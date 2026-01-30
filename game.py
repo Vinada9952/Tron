@@ -22,16 +22,15 @@ FPS = 30
 # SETTINGS
 # =====================
 DEFAULT_SETTINGS = {
-    "player1": {
+    "player": {
         "name": "Player 1",
-        "color": [0, 255, 0],
-        "bot": False
+        "color": [0, 255, 0]
     },
-    "player2": {
+    "Robot": {
         "name": "Player 2",
         "color": [255, 0, 0],
         "bot": True,
-        "difficulty": 4
+        "difficulty": 3
     }
 }
 

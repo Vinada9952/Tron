@@ -3,6 +3,11 @@ import random
 import json
 import time
 
+def aprint( msg ):
+    print( msg )
+    with open( "debug.log", "a" ) as f:
+        f.write( str(msg) + "\n" )
+
 # =====================
 # CONFIG IA
 # =====================
@@ -37,19 +42,27 @@ DEFAULT_SETTINGS = {
 }
 
 try:
+    with open( "debug.log", "w" ) as f:
+        f.write( f"LOG START -- {time.time()}" )
+except:
+    with open( "debug.log", "x" ) as f:
+        f.write( f"LOG START -- {time.time()}" )
+
+
+try:
     with open("settings.json", "r") as f:
         settings = json.load(f)
     if settings["version"] != VERSION:
-        print( f"Well it's not the good version, expected {VERSION}, got {settings["version"]}" )
+        aprint( f"Well it's not the good version, expected {VERSION}, got {settings["version"]}" )
         raise Exception( "Well it's not the good version" )
 except:
     settings = DEFAULT_SETTINGS
     try:
-        print( f"settings.json not formatted, expected {DEFAULT_SETTINGS}, got {settings}" )
+        aprint( f"settings.json not formatted, expected {DEFAULT_SETTINGS}, got {settings}" )
         with open("settings.json", "w") as f:
             json.dump(settings, f, indent=4)
     except:
-        print( f"No settings.json detected" )
+        aprint( f"No settings.json detected" )
         with open("settings.json", "w") as f:
             json.dump(settings, f, indent=4)
 

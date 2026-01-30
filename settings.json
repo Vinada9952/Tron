@@ -9,5 +9,6 @@
         "color": [255, 0, 0],
         "bot": true,
         "difficulty": 5
-    }
+    },
+    "version": "1.0.0"
 }

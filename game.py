@@ -17,6 +17,7 @@ WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 600
 GRID_SIZE = 5
 FPS = 30
+VERSION = "1.0.0"
 
 # =====================
 # SETTINGS
@@ -31,16 +32,26 @@ DEFAULT_SETTINGS = {
         "color": [255, 0, 0],
         "bot": True,
         "difficulty": 3
-    }
+    },
+    "version": VERSION
 }
 
 try:
     with open("settings.json", "r") as f:
         settings = json.load(f)
+    if settings["version"] != VERSION:
+        print( f"Well it's not the good version, expected {VERSION}, got {settings["version"]}" )
+        raise Exception( "Well it's not the good version" )
 except:
     settings = DEFAULT_SETTINGS
-    with open("settings.json", "w") as f:
-        json.dump(settings, f, indent=4)
+    try:
+        print( f"settings.json not formatted, expected {DEFAULT_SETTINGS}, got {settings}" )
+        with open("settings.json", "w") as f:
+            json.dump(settings, f, indent=4)
+    except:
+        print( f"No settings.json detected" )
+        with open("settings.json", "w") as f:
+            json.dump(settings, f, indent=4)
 
 # =====================
 # PYGAME INIT

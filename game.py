@@ -66,12 +66,14 @@ except:
         with open("settings.json", "w") as f:
             json.dump(settings, f, indent=4)
 
+aprint( f"game settings : {settings}" )
+
 # =====================
 # PYGAME INIT
 # =====================
 pygame.init()
 screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-pygame.display.set_caption("TRON OPTIMISÉ")
+pygame.display.set_caption("TRON")
 clock = pygame.time.Clock()
 
 # =====================
@@ -101,6 +103,7 @@ class Player:
     def set_direction(self, d):
         if (-d[0], -d[1]) != self.direction:
             self.next_direction = d
+            aprint( f"direction set to {d}" )
 
     def update(self):
         if not self.alive:

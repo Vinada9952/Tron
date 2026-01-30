@@ -1,7 +1,7 @@
 import pygame
 import random
 import json
-import time
+from time import time
 
 def aprint( msg ):
     print( msg )

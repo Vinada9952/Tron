@@ -1,8 +1,7 @@
 {
     "player1": {
         "name": "Vincent",
-        "color": [0, 255, 0],
-        "difficulty": 5
+        "color": [0, 255, 0]
     },
     "player2": {
         "name": "bot",

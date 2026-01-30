@@ -1,14 +1,13 @@
 {
     "player1": {
-        "name": "Player 1",
+        "name": "Vincent",
         "color": [0, 255, 0],
-        "bot": true,
         "difficulty": 5
     },
     "player2": {
-        "name": "Player 2",
+        "name": "bot",
         "color": [255, 0, 0],
-        "bot": false,
+        "bot": true,
         "difficulty": 5
     }
 }

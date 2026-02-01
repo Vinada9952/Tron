@@ -1,574 +1,868 @@
-LOG START -- 1769793921.437992game settings : {'player1': {'name': 'Vincent', 'color': [0, 255, 0]}, 'player2': {'name': 'bot', 'color': [255, 0, 0], 'bot': True, 'difficulty': 5}, 'version': '1.0.0'}
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (0, -1)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (0, 1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (1, 0)
-direction set to (0, 1)
-direction set to (0, -1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (1, 0)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (0, 1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (-1, 0)
-direction set to (0, 1)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (0, -1)
-direction set to (-1, 0)
-direction set to (1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (0, -1)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (0, 1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (0, -1)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (0, -1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (0, 1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (0, -1)
-direction set to (-1, 0)
-direction set to (1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (0, 1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (0, -1)
-direction set to (1, 0)
-direction set to (-1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (0, 1)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (0, -1)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (1, 0)
-direction set to (-1, 0)
-direction set to (0, -1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (0, -1)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (0, 1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (0, -1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (-1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (0, 1)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (0, 1)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (0, 1)
-direction set to (1, 0)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (0, 1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (-1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (0, 1)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (0, -1)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (-1, 0)
-direction set to (0, -1)
-direction set to (0, -1)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (1, 0)
-direction set to (0, -1)
-direction set to (1, 0)
-direction set to (0, 1)
-direction set to (0, 1)
-direction set to (-1, 0)
+LOG START -- 1769979937.137475
+modifying log
+game settings : {'player1': {'name': 'Vincent', 'color': [255, 255, 0]}, 'player2': {'name': 'Bot', 'color': [255, 0, 0]}, 'version': '2.0.1'}
+all colors : {'black': (0, 0, 0), 'white': (255, 255, 255), 'gray': (150, 150, 150), 'player1': (255, 255, 0), 'player2': (255, 0, 0)}
+player 1 color (255, 255, 0)
+player 2 color (255, 0, 0)
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+update players
+check player lives
+check death
+refresh screen
+print text if end game
+state debug
+state is now at Bot win
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning
+check death
+refresh screen
+print text if end game
+state debug
+pygame functionning

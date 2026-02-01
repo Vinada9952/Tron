@@ -2,6 +2,7 @@ import pygame
 import random
 import json
 from time import time
+import os.path
 
 def aprint( msg ):
     print( msg )
@@ -22,17 +23,17 @@ WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 600
 GRID_SIZE = 5
 FPS = 30
-VERSION = "1.0.0"
+VERSION = "1.0.4"
 
 # =====================
 # SETTINGS
 # =====================
 DEFAULT_SETTINGS = {
-    "player": {
+    "player1": {
         "name": "Player 1",
         "color": [0, 255, 0]
     },
-    "Robot": {
+    "player2": {
         "name": "Player 2",
         "color": [255, 0, 0],
         "bot": True,
@@ -41,12 +42,14 @@ DEFAULT_SETTINGS = {
     "version": VERSION
 }
 
-try:
+if os.path.exists( "./debug.log" ):
     with open( "debug.log", "w" ) as f:
-        f.write( f"LOG START -- {time.time()}" )
-except:
+        f.write( f"LOG START -- {time()}\n" )
+    aprint( "modifying log" )
+else:
     with open( "debug.log", "x" ) as f:
-        f.write( f"LOG START -- {time.time()}" )
+        f.write( f"LOG START -- {time()}\n" )
+    aprint( "creating log" )
 
 
 try:
@@ -55,6 +58,9 @@ try:
     if settings["version"] != VERSION:
         aprint( f"Well it's not the good version, expected {VERSION}, got {settings["version"]}" )
         raise Exception( "Well it's not the good version" )
+    _ = settings["player1"]
+    _ = settings["player2"]
+    _ = settings["version"]
 except:
     settings = DEFAULT_SETTINGS
     try:
@@ -148,6 +154,16 @@ class Game:
                     self.player1.set_direction((-1, 0))
                 if e.key == pygame.K_d:
                     self.player1.set_direction((1, 0))
+                if settings["player2"]["bot"]:
+                    if e.key == pygame.K_UP:
+                        self.player2.set_direction((0, -1))
+                    if e.key == pygame.K_DOWN:
+                        self.player2.set_direction((0, 1))
+                    if e.key == pygame.K_LEFT:
+                        self.player2.set_direction((-1, 0))
+                    if e.key == pygame.K_RIGHT:
+                        self.player2.set_direction((1, 0))
+
                 if e.key == pygame.K_r and self.game_over:
                     self.__init__()
 
@@ -181,7 +197,9 @@ class Game:
     # IA
     # =====================
     def bot_move(self, player, enemy, difficulty):
-        now = time.time()
+        if not settings["player2"]["bot"]:
+            return
+        now = time()
         if now - self.last_bot_think < BOT_THINK_DELAY:
             return
         self.last_bot_think = now
@@ -266,9 +284,9 @@ class Game:
 
         if not self.player1.alive or not self.player2.alive:
             self.game_over = True
-            if self.player1.alive:
+            if self.player1.alive and not self.player2.alive:
                 self.winner = settings["player1"]["name"] + " gagne !"
-            elif self.player2.alive:
+            elif self.player2.alive and not self.player1.alive:
                 self.winner = settings["player2"]["name"] + " gagne !"
             else:
                 self.winner = "Égalité !"

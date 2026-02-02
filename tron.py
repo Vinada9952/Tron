@@ -45,7 +45,7 @@ try:
     }
 
     backup_load = 0
-    TOTAL_LOAD = 5
+    TOTAL_LOAD = 9
     backup_settings = DEFAULT_SETTINGS
 
     # verify if files exists
@@ -70,6 +70,14 @@ try:
             backup_settings["player2"]["name"] = settings["player2"]["name"]
             backup_load += 1
             backup_settings["player2"]["color"] = settings["player2"]["color"]
+            backup_load += 1
+            backup_settings["player1"]["bot"] = settings["player1"]["bot"]
+            backup_load += 1
+            backup_settings["player1"]["difficulty"] = settings["player1"]["difficulty"]
+            backup_load += 1
+            backup_settings["player2"]["bot"] = settings["player2"]["bot"]
+            backup_load += 1
+            backup_settings["player2"]["difficulty"] = settings["player2"]["difficulty"]
             backup_load += 1
             if settings["version"] != VERSION:
                 raise KeyError( f"Not good version, expected {settings["version"]}, got {VERSION}" )

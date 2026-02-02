@@ -23,7 +23,7 @@ try:
     # AI settings
     REACTION_TIME = 0.032
     RADIUS_AI_VISION = 8
-    AGGRESSION = 0.6
+    AGGRESSION = 1
     LOOKAHEAD_DEPTH = 3
 
 
@@ -286,6 +286,19 @@ try:
         def getTrail( self ):
             return self.trail + [(self.pos.x, self.pos.y)]
         
+        def getPossibleTrail( self ):
+            to_return = self.trail + [
+                (
+                    self.pos.x,
+                    self.pos.y
+                ),
+                (
+                    self.pos.x+self.direction[0]*GRID_SIZE,
+                    self.pos.y+self.direction[1]*GRID_SIZE
+                )
+            ]
+            return to_return
+        
         def reset( self ):
             self.trail = []
             self.pos.x = self.start_pos[0]
@@ -323,11 +336,11 @@ try:
             if not settings["player1"]["bot"]:
                 player1.updatePlayer()
             else:
-                player1.updateBot( settings["player1"]["difficulty"], player2.getTrail(), player2.getPos() )
+                player1.updateBot( settings["player1"]["difficulty"], player2.getPossibleTrail(), player2.getPos() )
             if not settings["player2"]["bot"]:
                 player2.updatePlayer()
             else:
-                player2.updateBot( settings["player2"]["difficulty"], player1.getTrail(), player1.getPos() )
+                player2.updateBot( settings["player2"]["difficulty"], player1.getPossibleTrail(), player1.getPos() )
             
             player1.update()
             player2.update()

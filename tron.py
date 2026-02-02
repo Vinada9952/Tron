@@ -14,7 +14,7 @@ try:
             f.write(  f"level:{level} "+ str(msg) + "\n" )
 
     # game settings
-    VERSION = "2.1.0"
+    VERSION = "2.1.1"
     WINDOW_WIDTH = 800
     WINDOW_HEIGHT = 600
     GRID_SIZE = 5

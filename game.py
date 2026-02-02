@@ -1,323 +1,397 @@
-import pygame
-import random
-import json
-from time import time
-import os.path
-
-def aprint( msg ):
-    print( msg )
-    with open( "debug.log", "a" ) as f:
-        f.write( str(msg) + "\n" )
-
-# =====================
-# CONFIG IA
-# =====================
-LOOKAHEAD_DEPTH = 3
-AGGRESSION = 0.6
-BOT_THINK_DELAY = 0.032  # secondes
-
-# =====================
-# CONFIG JEU
-# =====================
-WINDOW_WIDTH = 800
-WINDOW_HEIGHT = 600
-GRID_SIZE = 5
-FPS = 30
-VERSION = "1.0.4"
-
-# =====================
-# SETTINGS
-# =====================
-DEFAULT_SETTINGS = {
-    "player1": {
-        "name": "Player 1",
-        "color": [0, 255, 0]
-    },
-    "player2": {
-        "name": "Player 2",
-        "color": [255, 0, 0],
-        "bot": True,
-        "difficulty": 3
-    },
-    "version": VERSION
-}
-
-if os.path.exists( "./debug.log" ):
-    with open( "debug.log", "w" ) as f:
-        f.write( f"LOG START -- {time()}\n" )
-    aprint( "modifying log" )
-else:
-    with open( "debug.log", "x" ) as f:
-        f.write( f"LOG START -- {time()}\n" )
-    aprint( "creating log" )
-
-
 try:
-    with open("settings.json", "r") as f:
-        settings = json.load(f)
-    if settings["version"] != VERSION:
-        aprint( f"Well it's not the good version, expected {VERSION}, got {settings["version"]}" )
-        raise Exception( "Well it's not the good version" )
-    _ = settings["player1"]
-    _ = settings["player2"]
-    _ = settings["version"]
-except:
-    settings = DEFAULT_SETTINGS
-    try:
-        aprint( f"settings.json not formatted, expected {DEFAULT_SETTINGS}, got {settings}" )
+    import pygame
+    import random
+    import json
+    from time import time
+    import os.path
+    import traceback
+    import sys
+
+    # debug function
+    def debugPrint( msg, level ):
+        # print( f"level:{level}", msg )
+        with open( "debug.log", "a" ) as f:
+            f.write(  f"level:{level} "+ str(msg) + "\n" )
+
+    # game settings
+    VERSION = "2.1.1"
+    WINDOW_WIDTH = 800
+    WINDOW_HEIGHT = 600
+    GRID_SIZE = 5
+    FPS = 30
+
+    # AI settings
+    REACTION_TIME = 0.032
+    RADIUS_AI_VISION = 8
+    AGGRESSION = 1
+    LOOKAHEAD_DEPTH = 3
+
+
+    # default settings
+    DEFAULT_SETTINGS = {
+        "player1": {
+            "name": "Player 1",
+            "color": (0, 255, 0),
+            "bot": False,
+            "difficulty": 2
+        },
+        "player2": {
+            "name": "Player 2",
+            "color": (255, 0, 0),
+            "bot": True,
+            "difficulty": 4
+        },
+        "version": VERSION
+    }
+
+    backup_load = 0
+    TOTAL_LOAD = 9
+    backup_settings = DEFAULT_SETTINGS
+
+    # verify if files exists
+    if os.path.exists( "./debug.log" ):
+        with open( "debug.log", "w" ) as f:
+            f.write( f"LOG START -- {time()}\n" )
+        debugPrint( "modifying log", 2 )
+    else:
+        with open( "debug.log", "x" ) as f:
+            f.write( f"LOG START -- {time()}\n" )
+        debugPrint( "creating log", 2 )
+
+    if os.path.exists( "./settings.json" ):
+        try:
+            with open("settings.json", "r") as f:
+                settings = json.load(f)
+            backup_load += 1
+            backup_settings["player1"]["name"] = settings["player1"]["name"]
+            backup_load += 1
+            backup_settings["player1"]["color"] = settings["player1"]["color"]
+            backup_load += 1
+            backup_settings["player2"]["name"] = settings["player2"]["name"]
+            backup_load += 1
+            backup_settings["player2"]["color"] = settings["player2"]["color"]
+            backup_load += 1
+            backup_settings["player1"]["bot"] = settings["player1"]["bot"]
+            backup_load += 1
+            backup_settings["player1"]["difficulty"] = settings["player1"]["difficulty"]
+            backup_load += 1
+            backup_settings["player2"]["bot"] = settings["player2"]["bot"]
+            backup_load += 1
+            backup_settings["player2"]["difficulty"] = settings["player2"]["difficulty"]
+            backup_load += 1
+            if settings["version"] != VERSION:
+                raise KeyError( f"Not good version, expected {settings["version"]}, got {VERSION}" )
+        except KeyError as e:
+            debugPrint( str( e ), 5 )
+            debugPrint( f"settings.json not formatted, expected {DEFAULT_SETTINGS}, got {settings}", 4 )
+            debugPrint( f"backup is at {backup_load}, load is at {backup_load}/{TOTAL_LOAD}", 4 )
+            
+            
+            if backup_load == TOTAL_LOAD:
+                settings = backup_settings
+            else:
+                settings = DEFAULT_SETTINGS
+            with open("settings.json", "w") as f:
+                json.dump(settings, f, indent=4)
+    else:
+        debugPrint( f"No settings.json detected", 4 )
         with open("settings.json", "w") as f:
-            json.dump(settings, f, indent=4)
-    except:
-        aprint( f"No settings.json detected" )
-        with open("settings.json", "w") as f:
-            json.dump(settings, f, indent=4)
+            json.dump(DEFAULT_SETTINGS, f, indent=4)
 
-aprint( f"game settings : {settings}" )
 
-# =====================
-# PYGAME INIT
-# =====================
-pygame.init()
-screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-pygame.display.set_caption("TRON")
-clock = pygame.time.Clock()
+    debugPrint( f"game settings : {settings}", 2 )
 
-# =====================
-# COULEURS
-# =====================
-COLORS = {
-    "black": (0, 0, 0),
-    "white": (255, 255, 255),
-    "gray": (150, 150, 150),
-    "player1": settings["player1"]["color"],
-    "player2": settings["player2"]["color"]
-}
+    pygame.init()
+    screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+    pygame.display.set_caption("TRON")
+    clock = pygame.time.Clock()
+    font = pygame.font.Font( None, 36 )
 
-# =====================
-# PLAYER
-# =====================
-class Player:
-    def __init__(self, x, y, color, direction):
-        self.x = x
-        self.y = y
-        self.direction = direction
-        self.next_direction = direction
-        self.color = color
-        self.trail = [(x, y)]
-        self.alive = True
+    COLORS = {
+        "black": (0, 0, 0),
+        "white": (255, 255, 255),
+        "gray": (150, 150, 150),
+        "player1": tuple(settings["player1"]["color"]),
+        "player2": tuple(settings["player2"]["color"])
+    }
 
-    def set_direction(self, d):
-        if (-d[0], -d[1]) != self.direction:
-            self.next_direction = d
-            aprint( f"direction set to {d}" )
+    debugPrint( f"all colors : {COLORS}", 1 )
 
-    def update(self):
-        if not self.alive:
-            return
 
-        self.direction = self.next_direction
-        self.x += self.direction[0] * GRID_SIZE
-        self.y += self.direction[1] * GRID_SIZE
-        self.trail.append((self.x, self.y))
+    class Player( pygame.sprite.Sprite ):
+        def __init__( self, x, y, direction, color, player ):
+            global settings
 
-    def draw(self, surf):
-        for x, y in self.trail:
-            pygame.draw.rect(surf, self.color, (x, y, GRID_SIZE, GRID_SIZE))
+            self.start_pos = (x, y)
+            self.start_direction = direction
+            self.last_bot_think = time()
 
-# =====================
-# GAME
-# =====================
-class Game:
-    def __init__(self):
-        self.player1 = Player(150, 300, COLORS["player1"], (1, 0))
-        self.player2 = Player(650, 300, COLORS["player2"], (-1, 0))
-        self.occupied = set(self.player1.trail + self.player2.trail)
-        self.running = True
-        self.game_over = False
-        self.winner = ""
-        self.font = pygame.font.Font(None, 36)
-        self.last_bot_think = 0
+            self.is_alive = True
+            self.direction = direction
+            self.color = color
+            self.trail = []
+            self.player = player
+            self.image = pygame.Surface( [ GRID_SIZE, GRID_SIZE ] )
+            self.image.fill( self.color )
+            self.pos = self.image.get_rect()
+            self.pos.x = x
+            self.pos.y = y
 
-    # =====================
-    # INPUT
-    # =====================
-    def handle_events(self):
-        for e in pygame.event.get():
-            if e.type == pygame.QUIT:
-                self.running = False
-            if e.type == pygame.KEYDOWN:
-                if e.key == pygame.K_w:
-                    self.player1.set_direction((0, -1))
-                if e.key == pygame.K_s:
-                    self.player1.set_direction((0, 1))
-                if e.key == pygame.K_a:
-                    self.player1.set_direction((-1, 0))
-                if e.key == pygame.K_d:
-                    self.player1.set_direction((1, 0))
-                if settings["player2"]["bot"]:
-                    if e.key == pygame.K_UP:
-                        self.player2.set_direction((0, -1))
-                    if e.key == pygame.K_DOWN:
-                        self.player2.set_direction((0, 1))
-                    if e.key == pygame.K_LEFT:
-                        self.player2.set_direction((-1, 0))
-                    if e.key == pygame.K_RIGHT:
-                        self.player2.set_direction((1, 0))
+        def update( self ):
+            self.trail.append( (self.pos.x, self.pos.y) )
+            self.pos.x += self.direction[0] * GRID_SIZE
+            self.pos.y += self.direction[1] * GRID_SIZE
 
-                if e.key == pygame.K_r and self.game_over:
-                    self.__init__()
+        def updatePlayer( self ):
+            if not self.is_alive:
+                return
+            keys = pygame.key.get_pressed()
+            if self.player == 1:
+                if keys[pygame.K_w] and [0, 1] != self.direction:
+                    self.direction = [0, -1]
+                if keys[pygame.K_a] and [1, 0] != self.direction:
+                    self.direction = [-1, 0]
+                if keys[pygame.K_s] and [0, -1] != self.direction:
+                    self.direction = [0, 1]
+                if keys[pygame.K_d] and [-1, 0] != self.direction:
+                    self.direction = [1, 0]
+            if self.player == 2:
+                if keys[pygame.K_UP] and [0, 1] != self.direction:
+                    self.direction = [0, -1]
+                if keys[pygame.K_LEFT] and [1, 0] != self.direction:
+                    self.direction = [-1, 0]
+                if keys[pygame.K_DOWN] and [0, -1] != self.direction:
+                    self.direction = [0, 1]
+                if keys[pygame.K_RIGHT] and [-1, 0] != self.direction:
+                    self.direction = [1, 0]
 
-    # =====================
-    # UTILS
-    # =====================
-    def valid_moves(self, x, y, direction):
-        dx, dy = direction
-        dirs = [(dx, dy), (-dy, dx), (dy, -dx)]
-        moves = []
-        for d in dirs:
-            nx = x + d[0] * GRID_SIZE
-            ny = y + d[1] * GRID_SIZE
-            if 0 <= nx < WINDOW_WIDTH and 0 <= ny < WINDOW_HEIGHT:
-                if (nx, ny) not in self.occupied:
-                    moves.append(d)
-        return moves
+        
+        def updateBot( self, difficulty, trail, other_pos ):
 
-    def fast_space(self, x, y, radius=8):
-        score = 0
-        for dx in range(-radius, radius + 1):
-            for dy in range(-radius, radius + 1):
-                nx = x + dx * GRID_SIZE
-                ny = y + dy * GRID_SIZE
+            now = time()
+            if now - self.last_bot_think < REACTION_TIME:
+                return
+            self.last_bot_think = now
+
+
+            dx, dy = self.direction
+            dirs = [(dx, dy), (-dy, dx), (dy, -dx)]
+            moves = []
+            for d in dirs:
+                nx = self.pos.x + d[0] * GRID_SIZE
+                ny = self.pos.y + d[1] * GRID_SIZE
                 if 0 <= nx < WINDOW_WIDTH and 0 <= ny < WINDOW_HEIGHT:
-                    if (nx, ny) not in self.occupied:
-                        score += 1
-        return score
+                    if (nx, ny) not in self.trail + trail:
+                        moves.append(d)
+            
 
-    # =====================
-    # IA
-    # =====================
-    def bot_move(self, player, enemy, difficulty):
-        if not settings["player2"]["bot"]:
-            return
-        now = time()
-        if now - self.last_bot_think < BOT_THINK_DELAY:
-            return
-        self.last_bot_think = now
+            if not moves:
+                return
 
-        moves = self.valid_moves(player.x, player.y, player.direction)
-        if not moves:
-            return
+            if difficulty == 1:
+                self.direction = random.choice( moves )
+                return
 
-        if difficulty == 1:
-            player.set_direction(random.choice(moves))
-            return
+            def fast_space(x, y, trails):
+                score = 0
+                for dx in range(-RADIUS_AI_VISION, RADIUS_AI_VISION + 1):
+                    for dy in range(-RADIUS_AI_VISION, RADIUS_AI_VISION + 1):
+                        nx = x + dx * GRID_SIZE
+                        ny = y + dy * GRID_SIZE
+                        if 0 <= nx < WINDOW_WIDTH and 0 <= ny < WINDOW_HEIGHT:
+                            if (nx, ny) not in trails:
+                                score += 1
+                return score
 
-        if difficulty == 2:
-            best = max(moves, key=lambda d: self.fast_space(
-                player.x + d[0]*GRID_SIZE,
-                player.y + d[1]*GRID_SIZE
-            ))
-            player.set_direction(best)
-            return
+            if difficulty == 2:
+                best = max(
+                    moves, key=lambda d: fast_space(
+                        self.pos.x + d[0]*GRID_SIZE,
+                        self.pos.y + d[1]*GRID_SIZE,
+                        self.trail + trail
+                    )
+                )
+                self.direction = best
+                return
+            
+            def valid_moves(x, y, direction, trails):
+                dx, dy = direction
+                dirs = [(dx, dy), (-dy, dx), (dy, -dx)]
+                moves = []
+                for d in dirs:
+                    nx = x + d[0] * GRID_SIZE
+                    ny = y + d[1] * GRID_SIZE
+                    if 0 <= nx < WINDOW_WIDTH and 0 <= ny < WINDOW_HEIGHT:
+                        if (nx, ny) not in trails:
+                            moves.append(d)
+                return moves
 
-        def evaluate(x, y):
-            space = self.fast_space(x, y)
-            dist = abs(x - enemy.x) + abs(y - enemy.y)
-            return space * (1 - AGGRESSION) - dist * AGGRESSION
+            def evaluate(x, y, trails):
+                space = fast_space(x, y, trails)
+                dist = abs(x - other_pos[0]) + abs(y - other_pos[1])
+                return space * (1 - AGGRESSION) - dist * AGGRESSION
 
-        def simulate(x, y, direction, occ, depth):
-            if depth == 0:
-                return evaluate(x, y)
+            def simulate(x, y, direction, occ, depth, trails):
+                if depth == 0:
+                    return evaluate(x, y, trails)
 
-            best = -999999
-            for d in self.valid_moves(x, y, direction):
-                nx = x + d[0]*GRID_SIZE
-                ny = y + d[1]*GRID_SIZE
-                if (nx, ny) in occ:
-                    continue
+                best = -999999
+                for d in valid_moves(x, y, direction, trails):
+                    nx = x + d[0]*GRID_SIZE
+                    ny = y + d[1]*GRID_SIZE
+                    if (nx, ny) in occ:
+                        continue
+                    score = simulate(
+                        nx, ny, d,
+                        occ | {(nx, ny)},
+                        depth - 1,
+                        trails
+                    )
+                    best = max(best, score)
+                return best
+
+            best_dir = None
+            best_score = -999999
+
+            for d in moves:
+                nx = self.pos.x + d[0]*GRID_SIZE
+                ny = self.pos.y + d[1]*GRID_SIZE
                 score = simulate(
                     nx, ny, d,
-                    occ | {(nx, ny)},
-                    depth - 1
+                    set(self.trail+trail) | {(nx, ny)},
+                    LOOKAHEAD_DEPTH,
+                    self.trail+trail
                 )
-                best = max(best, score)
-            return best
+                if score > best_score:
+                    best_score = score
+                    best_dir = d
 
-        best_dir = None
-        best_score = -999999
+            if best_dir:
+                self.direction = best_dir
+            
+            # if self.direction[0] == 0:
+            #     if self.pos.y-other_pos[1] == GRID_SIZE*2*self.direction[1]:
+            #         if self.pos.x < other_pos[0]:
+            #             self.direction = [-1, 0]
+            #         if self.pos.x > other_pos[0]:
+            #             self.direction = [1, 0]
+            # elif self.direction[1] == 0:
+            #     if self.pos.y-other_pos[0] == GRID_SIZE*2*self.direction[1]:
+            #         if self.pos.x < other_pos[1]:
+            #             self.direction = [0, -1]
+            #         if self.pos.x > other_pos[1]:
+            #             self.direction = [0, 1]
 
-        for d in moves:
-            nx = player.x + d[0]*GRID_SIZE
-            ny = player.y + d[1]*GRID_SIZE
-            score = simulate(
-                nx, ny, d,
-                self.occupied | {(nx, ny)},
-                LOOKAHEAD_DEPTH
-            )
-            if score > best_score:
-                best_score = score
-                best_dir = d
+        
+        def isAlive( self, other_trail ):
+            if ( self.pos.x, self.pos.y ) in self.trail + other_trail:
+                self.is_alive = False
+            if self.pos.x < 0 or self.pos.x >= WINDOW_WIDTH:
+                self.is_alive = False
+            if self.pos.y < 0 or self.pos.y >= WINDOW_HEIGHT:
+                self.is_alive = False
 
-        if best_dir:
-            player.set_direction(best_dir)
+        def drawTrail( self ):
+            global screen
+            for x, y in self.trail:
+                pygame.draw.rect( screen, self.color, ( x, y, GRID_SIZE, GRID_SIZE ) )
+        
+        def getTrail( self ):
+            return self.trail + [(self.pos.x, self.pos.y)]
+        
+        def getPossibleTrail( self ):
+            to_return = self.trail + [
+                (
+                    self.pos.x,
+                    self.pos.y
+                ),
+                (
+                    self.pos.x+self.direction[0]*GRID_SIZE,
+                    self.pos.y+self.direction[1]*GRID_SIZE
+                )
+            ]
+            return to_return
+        
+        def reset( self ):
+            self.trail = []
+            self.pos.x = self.start_pos[0]
+            self.pos.y = self.start_pos[1]
+            self.direction = self.start_direction
+            self.is_alive = True
+        
+        def getPos( self ):
+            return (self.pos.x, self.pos.y)
 
-    # =====================
-    # UPDATE
-    # =====================
-    def update(self):
-        if self.game_over:
-            return
 
-        if settings["player2"].get("bot", False):
-            self.bot_move(self.player2, self.player1, settings["player2"]["difficulty"])
+    player1 = Player( 150, 300, [1, 0], COLORS["player1"], 1 )
+    player2 = Player( 650, 300, [-1, 0], COLORS["player2"], 2 )
 
-        self.player1.update()
-        self.player2.update()
+    debugPrint( f"player 1 color {COLORS["player1"]}", 1 )
+    debugPrint( f"player 2 color {COLORS["player2"]}", 1 )
 
-        for p in (self.player1, self.player2):
-            if (p.x < 0 or p.x >= WINDOW_WIDTH or
-                p.y < 0 or p.y >= WINDOW_HEIGHT or
-                (p.x, p.y) in self.occupied):
-                p.alive = False
+    running = True
+    state = "running"
+    last_state = state
+
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r:
+                    player1.reset()
+                    player2.reset()
+                    state = "running"
+                    debugPrint( "restart game", 1 )
+        
+        if state == "running":
+            debugPrint( "update players", 1 )
+            if not settings["player1"]["bot"]:
+                player1.updatePlayer()
             else:
-                self.occupied.add((p.x, p.y))
-
-        if not self.player1.alive or not self.player2.alive:
-            self.game_over = True
-            if self.player1.alive and not self.player2.alive:
-                self.winner = settings["player1"]["name"] + " gagne !"
-            elif self.player2.alive and not self.player1.alive:
-                self.winner = settings["player2"]["name"] + " gagne !"
+                player1.updateBot( settings["player1"]["difficulty"], player2.getPossibleTrail(), player2.getPos() )
+            if not settings["player2"]["bot"]:
+                player2.updatePlayer()
             else:
-                self.winner = "Égalité !"
+                player2.updateBot( settings["player2"]["difficulty"], player1.getPossibleTrail(), player1.getPos() )
+            
+            player1.update()
+            player2.update()
+            
+            debugPrint( "check player lives", 1 )
+            player1.isAlive( player2.getTrail() )
+            player2.isAlive( player1.getTrail() )
 
-    # =====================
-    # DRAW
-    # =====================
-    def draw(self):
+        debugPrint( "check death", 1 )
+        if player1.is_alive == False and player2.is_alive == False:
+            state = "egality"
+        if player1.is_alive and player2.is_alive == False:
+            state = f"{settings["player1"]["name"]} win"
+        if player1.is_alive == False and player2.is_alive:
+            state = f"{settings["player2"]["name"]} win"
+        
+        debugPrint( "refresh screen", 1 )
         screen.fill(COLORS["black"])
-        self.player1.draw(screen)
-        self.player2.draw(screen)
+        player1.drawTrail()
+        player2.drawTrail()
 
-        if self.game_over:
-            txt = self.font.render(self.winner, True, COLORS["white"])
-            screen.blit(txt, (WINDOW_WIDTH//2 - txt.get_width()//2, WINDOW_HEIGHT//2))
+        debugPrint( "print text if end game", 1 )
+        if state != "running":
+            text1 = font.render( state, True, COLORS["white"] )
+            screen.blit( text1, (WINDOW_WIDTH//2 - text1.get_width()//2, WINDOW_HEIGHT//4) )
+            text2 = font.render( "Press R to restart", True, COLORS["white"] )
+            screen.blit( text2, (WINDOW_WIDTH//2 - text2.get_width()//2, WINDOW_HEIGHT//4+25) )
+        
+        debugPrint( "state debug", 1 )
+        if last_state != state:
+            debugPrint( f"state is now at {state}", 2 )
+        last_state = state
 
+        debugPrint( "pygame functionning", 1 )
         pygame.display.flip()
 
-    # =====================
-    # RUN
-    # =====================
-    def run(self):
-        while self.running:
-            self.handle_events()
-            self.update()
-            self.draw()
-            clock.tick(FPS)
-        pygame.quit()
-
-# =====================
-# MAIN
-# =====================
-if __name__ == "__main__":
-    Game().run()
+        clock.tick(FPS)
+except Exception as e:
+    tb = traceback.extract_tb(sys.exc_info()[2])
+    line = tb[-1].lineno
+    debugPrint( str( e ) + f" line:{line}", 5 )

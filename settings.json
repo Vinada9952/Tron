@@ -5,7 +5,9 @@
             255,
             255,
             0
-        ]
+        ],
+        "bot": false,
+        "difficulty": 5
     },
     "player2": {
         "name": "Bot",
@@ -13,7 +15,9 @@
             255,
             0,
             0
-        ]
+        ],
+        "bot": true,
+        "difficulty": 5
     },
-    "version": "2.0.1"
+    "version": "2.1.0"
 }

@@ -9,27 +9,37 @@ try:
 
     # debug function
     def debugPrint( msg, level ):
-        print( f"level:{level}", msg )
+        # print( f"level:{level}", msg )
         with open( "debug.log", "a" ) as f:
             f.write(  f"level:{level} "+ str(msg) + "\n" )
 
     # game settings
-    VERSION = "2.0.1"
+    VERSION = "2.1.0"
     WINDOW_WIDTH = 800
     WINDOW_HEIGHT = 600
     GRID_SIZE = 5
     FPS = 30
+
+    # AI settings
+    REACTION_TIME = 0.032
+    RADIUS_AI_VISION = 8
+    AGGRESSION = 0.6
+    LOOKAHEAD_DEPTH = 3
 
 
     # default settings
     DEFAULT_SETTINGS = {
         "player1": {
             "name": "Player 1",
-            "color": (0, 255, 0)
+            "color": (0, 255, 0),
+            "bot": False,
+            "difficulty": 2
         },
         "player2": {
             "name": "Player 2",
-            "color": (255, 0, 0)
+            "color": (255, 0, 0),
+            "bot": True,
+            "difficulty": 4
         },
         "version": VERSION
     }
@@ -106,6 +116,7 @@ try:
 
             self.start_pos = (x, y)
             self.start_direction = direction
+            self.last_bot_think = time()
 
             self.is_alive = True
             self.direction = direction
@@ -117,8 +128,13 @@ try:
             self.pos = self.image.get_rect()
             self.pos.x = x
             self.pos.y = y
-        
+
         def update( self ):
+            self.trail.append( (self.pos.x, self.pos.y) )
+            self.pos.x += self.direction[0] * GRID_SIZE
+            self.pos.y += self.direction[1] * GRID_SIZE
+
+        def updatePlayer( self ):
             if not self.is_alive:
                 return
             keys = pygame.key.get_pressed()
@@ -140,10 +156,110 @@ try:
                     self.direction = [0, 1]
                 if keys[pygame.K_RIGHT] and [-1, 0] != self.direction:
                     self.direction = [1, 0]
+
+        
+        def updateBot( self, difficulty, trail, other_pos ):
+
+            now = time()
+            if now - self.last_bot_think < REACTION_TIME:
+                return
+            self.last_bot_think = now
+
+
+            dx, dy = self.direction
+            dirs = [(dx, dy), (-dy, dx), (dy, -dx)]
+            moves = []
+            for d in dirs:
+                nx = self.pos.x + d[0] * GRID_SIZE
+                ny = self.pos.y + d[1] * GRID_SIZE
+                if 0 <= nx < WINDOW_WIDTH and 0 <= ny < WINDOW_HEIGHT:
+                    if (nx, ny) not in self.trail + trail:
+                        moves.append(d)
             
-            self.trail.append( (self.pos.x, self.pos.y) )
-            self.pos.x += self.direction[0] * GRID_SIZE
-            self.pos.y += self.direction[1] * GRID_SIZE
+
+            if not moves:
+                return
+
+            if difficulty == 1:
+                self.direction = random.choice( moves )
+                return
+
+            def fast_space(x, y, trails):
+                score = 0
+                for dx in range(-RADIUS_AI_VISION, RADIUS_AI_VISION + 1):
+                    for dy in range(-RADIUS_AI_VISION, RADIUS_AI_VISION + 1):
+                        nx = x + dx * GRID_SIZE
+                        ny = y + dy * GRID_SIZE
+                        if 0 <= nx < WINDOW_WIDTH and 0 <= ny < WINDOW_HEIGHT:
+                            if (nx, ny) not in trails:
+                                score += 1
+                return score
+
+            if difficulty == 2:
+                best = max(
+                    moves, key=lambda d: fast_space(
+                        self.pos.x + d[0]*GRID_SIZE,
+                        self.pos.y + d[1]*GRID_SIZE,
+                        self.trail + trail
+                    )
+                )
+                self.direction = best
+                return
+            
+            def valid_moves(x, y, direction, trails):
+                dx, dy = direction
+                dirs = [(dx, dy), (-dy, dx), (dy, -dx)]
+                moves = []
+                for d in dirs:
+                    nx = x + d[0] * GRID_SIZE
+                    ny = y + d[1] * GRID_SIZE
+                    if 0 <= nx < WINDOW_WIDTH and 0 <= ny < WINDOW_HEIGHT:
+                        if (nx, ny) not in trails:
+                            moves.append(d)
+                return moves
+
+            def evaluate(x, y, trails):
+                space = fast_space(x, y, trails)
+                dist = abs(x - other_pos[0]) + abs(y - other_pos[1])
+                return space * (1 - AGGRESSION) - dist * AGGRESSION
+
+            def simulate(x, y, direction, occ, depth, trails):
+                if depth == 0:
+                    return evaluate(x, y, trails)
+
+                best = -999999
+                for d in valid_moves(x, y, direction, trails):
+                    nx = x + d[0]*GRID_SIZE
+                    ny = y + d[1]*GRID_SIZE
+                    if (nx, ny) in occ:
+                        continue
+                    score = simulate(
+                        nx, ny, d,
+                        occ | {(nx, ny)},
+                        depth - 1,
+                        trails
+                    )
+                    best = max(best, score)
+                return best
+
+            best_dir = None
+            best_score = -999999
+
+            for d in moves:
+                nx = self.pos.x + d[0]*GRID_SIZE
+                ny = self.pos.y + d[1]*GRID_SIZE
+                score = simulate(
+                    nx, ny, d,
+                    set(self.trail+trail) | {(nx, ny)},
+                    LOOKAHEAD_DEPTH,
+                    self.trail+trail
+                )
+                if score > best_score:
+                    best_score = score
+                    best_dir = d
+
+            if best_dir:
+                self.direction = best_dir
 
         
         def isAlive( self, other_trail ):
@@ -168,6 +284,9 @@ try:
             self.pos.y = self.start_pos[1]
             self.direction = self.start_direction
             self.is_alive = True
+        
+        def getPos( self ):
+            return (self.pos.x, self.pos.y)
 
 
     player1 = Player( 150, 300, [1, 0], COLORS["player1"], 1 )
@@ -193,8 +312,18 @@ try:
         
         if state == "running":
             debugPrint( "update players", 1 )
+            if not settings["player1"]["bot"]:
+                player1.updatePlayer()
+            else:
+                player1.updateBot( settings["player1"]["difficulty"], player2.getTrail(), player2.getPos() )
+            if not settings["player2"]["bot"]:
+                player2.updatePlayer()
+            else:
+                player2.updateBot( settings["player2"]["difficulty"], player1.getTrail(), player1.getPos() )
+            
             player1.update()
             player2.update()
+            
             debugPrint( "check player lives", 1 )
             player1.isAlive( player2.getTrail() )
             player2.isAlive( player1.getTrail() )

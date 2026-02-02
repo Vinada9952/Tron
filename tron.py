@@ -268,14 +268,27 @@ try:
 
             if best_dir:
                 self.direction = best_dir
+            
+            # if self.direction[0] == 0:
+            #     if self.pos.y-other_pos[1] == GRID_SIZE*2*self.direction[1]:
+            #         if self.pos.x < other_pos[0]:
+            #             self.direction = [-1, 0]
+            #         if self.pos.x > other_pos[0]:
+            #             self.direction = [1, 0]
+            # elif self.direction[1] == 0:
+            #     if self.pos.y-other_pos[0] == GRID_SIZE*2*self.direction[1]:
+            #         if self.pos.x < other_pos[1]:
+            #             self.direction = [0, -1]
+            #         if self.pos.x > other_pos[1]:
+            #             self.direction = [0, 1]
 
         
         def isAlive( self, other_trail ):
             if ( self.pos.x, self.pos.y ) in self.trail + other_trail:
                 self.is_alive = False
-            if self.pos.x < 0 or self.pos.x > WINDOW_WIDTH:
+            if self.pos.x < 0 or self.pos.x >= WINDOW_WIDTH:
                 self.is_alive = False
-            if self.pos.y < 0 or self.pos.y > WINDOW_HEIGHT:
+            if self.pos.y < 0 or self.pos.y >= WINDOW_HEIGHT:
                 self.is_alive = False
 
         def drawTrail( self ):
@@ -364,8 +377,10 @@ try:
 
         debugPrint( "print text if end game", 1 )
         if state != "running":
-            text = font.render( state, True, COLORS["white"] )
-            screen.blit( text, (WINDOW_WIDTH//2 - text.get_width()//2, WINDOW_HEIGHT//2) )
+            text1 = font.render( state, True, COLORS["white"] )
+            screen.blit( text1, (WINDOW_WIDTH//2 - text1.get_width()//2, WINDOW_HEIGHT//4) )
+            text2 = font.render( "Press R to restart", True, COLORS["white"] )
+            screen.blit( text2, (WINDOW_WIDTH//2 - text2.get_width()//2, WINDOW_HEIGHT//4+25) )
         
         debugPrint( "state debug", 1 )
         if last_state != state:
